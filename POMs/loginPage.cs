@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
+
 
 namespace TestySelenium.POMs
 {
@@ -13,10 +8,10 @@ namespace TestySelenium.POMs
     {
         #region Elements
 
-        IWebDriver driver = new ChromeDriver();
-        IWebElement usernameInput => driver.FindElement(By.Name("username"));
-        IWebElement passwordInput => driver.FindElement(By.Name("password"));
-        IWebElement submitLoginBtn => driver.FindElement(By.CssSelector("input[type='submit'][class='button']"));
+        private IWebDriver driver = new ChromeDriver();
+        private IWebElement usernameInput => driver.FindElement(By.Name("username"));
+        private IWebElement passwordInput => driver.FindElement(By.Name("password"));
+        private IWebElement submitLoginBtn => driver.FindElement(By.CssSelector("input[type='submit'][class='button']"));
 
         #endregion Elements
 
@@ -24,6 +19,7 @@ namespace TestySelenium.POMs
 
         public loginPage CompleteLogin(string username, string password)
         {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl("https://parabank.parasoft.com/parabank/index.htm?ConnType=JDBC");
             usernameInput.SendKeys(username);
             passwordInput.SendKeys(password);

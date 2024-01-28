@@ -1,5 +1,3 @@
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using TestySelenium.POMs;
 
 namespace TestySelenium.Testing
@@ -9,11 +7,17 @@ namespace TestySelenium.Testing
         [Test]
         public void VisitingAndLoginIntoTestWebsite()
         {
-            string username = "test";
-            string password = "test";
+            //Test data
+            string username = "TestLogin";
+            string password = "TestPassword";
             var loginPage = new loginPage();
 
             loginPage.CompleteLogin(username, password);
+
+            var homePage = new homePage();
+
+            bool isHomePageDisplayed = homePage.VerifyIfHomepageIsDisplayed();
+            Assert.IsTrue(isHomePageDisplayed);
          }
     }
 }
