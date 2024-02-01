@@ -4,14 +4,15 @@ using OpenQA.Selenium.Chrome;
 
 namespace TestySelenium.POMs
 {
-    public class loginPage
+    public class loginPage : PageObjectBase
     {
+        public loginPage() : base()
+        {
+        }
         #region Elements
-
-        private IWebDriver driver = new ChromeDriver();
-        private IWebElement usernameInput => driver.FindElement(By.Name("username"));
-        private IWebElement passwordInput => driver.FindElement(By.Name("password"));
-        private IWebElement submitLoginBtn => driver.FindElement(By.CssSelector("input[type='submit'][class='button']"));
+        private IWebElement usernameInput => Driver.FindElement(By.Name("username"));
+        private IWebElement passwordInput => Driver.FindElement(By.Name("password"));
+        private IWebElement submitLoginBtn => Driver.FindElement(By.CssSelector("input[type='submit'][class='button']"));
 
         #endregion Elements
 
@@ -19,8 +20,8 @@ namespace TestySelenium.POMs
 
         public loginPage CompleteLogin(string username, string password)
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Navigate().GoToUrl("https://parabank.parasoft.com/parabank/index.htm?ConnType=JDBC");
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Driver.Navigate().GoToUrl("https://parabank.parasoft.com/parabank/index.htm?ConnType=JDBC");
             usernameInput.SendKeys(username);
             passwordInput.SendKeys(password);
             submitLoginBtn.Click();

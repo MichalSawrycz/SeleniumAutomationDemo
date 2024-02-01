@@ -4,14 +4,13 @@ using OpenQA.Selenium.Chrome;
 
 namespace TestySelenium.POMs
 {
-    public class homePage
+    public class homePage : PageObjectBase
     {
+        public homePage() : base()
+        {
+        }
         #region Elements
-
-        IWebDriver driver = new ChromeDriver();
-
-        private IWebElement homePageAccountTable => driver.FindElement(By.Id("accountTable"));
-
+        private IWebElement homePageAccountTable => Driver.FindElement(By.Id("accountTable"));
 
         #endregion Elements
 
@@ -19,7 +18,7 @@ namespace TestySelenium.POMs
 
         public bool VerifyIfHomepageIsDisplayed()
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             bool IsElementVisible = homePageAccountTable.Displayed;
             return IsElementVisible;
         }
