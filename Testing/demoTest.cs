@@ -8,8 +8,8 @@ namespace TestySelenium.Testing
         public void VisitingAndLoginIntoTestWebsite()
         {
             //Test data
-            string username = "TestLogin";
-            string password = "TestPassword";
+            string username = "michaelsawrycz@gmail.com";
+            string password = "Test123!";
             var loginPage = new loginPage();
 
             loginPage.CompleteLogin(username, password);
@@ -18,6 +18,8 @@ namespace TestySelenium.Testing
 
             bool isHomePageDisplayed = homePage.VerifyIfHomepageIsDisplayed();
             Assert.IsTrue(isHomePageDisplayed);
+
+            homePage.Logout();
          }
     }
 }

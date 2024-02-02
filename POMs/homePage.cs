@@ -10,7 +10,8 @@ namespace TestySelenium.POMs
         {
         }
         #region Elements
-        private IWebElement homePageAccountTable => Driver.FindElement(By.Id("accountTable"));
+        private IWebElement FeaturedItemsList => Driver.FindElement(By.ClassName("features_items"));
+        private IWebElement LogoutBtn => Driver.FindElement(By.CssSelector("a[href='/logout']"));
 
         #endregion Elements
 
@@ -19,8 +20,14 @@ namespace TestySelenium.POMs
         public bool VerifyIfHomepageIsDisplayed()
         {
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            bool IsElementVisible = homePageAccountTable.Displayed;
+            bool IsElementVisible = FeaturedItemsList.Displayed;
             return IsElementVisible;
+        }
+
+        public void Logout()
+        {
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            LogoutBtn.Click();
         }
 
         #endregion Public methods

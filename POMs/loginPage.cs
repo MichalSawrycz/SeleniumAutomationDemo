@@ -10,9 +10,9 @@ namespace TestySelenium.POMs
         {
         }
         #region Elements
-        private IWebElement usernameInput => Driver.FindElement(By.Name("username"));
-        private IWebElement passwordInput => Driver.FindElement(By.Name("password"));
-        private IWebElement submitLoginBtn => Driver.FindElement(By.CssSelector("input[type='submit'][class='button']"));
+        private IWebElement usernameInput => Driver.FindElement(By.CssSelector("input[data-qa='login-email']"));
+        private IWebElement passwordInput => Driver.FindElement(By.CssSelector("input[data-qa='login-password']"));
+        private IWebElement submitLoginBtn => Driver.FindElement(By.CssSelector("button[data-qa='login-button']"));
 
         #endregion Elements
 
@@ -21,7 +21,7 @@ namespace TestySelenium.POMs
         public loginPage CompleteLogin(string username, string password)
         {
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            Driver.Navigate().GoToUrl("https://parabank.parasoft.com/parabank/index.htm?ConnType=JDBC");
+            Driver.Navigate().GoToUrl("https://automationexercise.com/login");
             usernameInput.SendKeys(username);
             passwordInput.SendKeys(password);
             submitLoginBtn.Click();
