@@ -8,8 +8,9 @@ namespace TestySelenium.Testing
         public void VisitingAndLoginIntoTestWebsite()
         {
             //Test data
-            string username = "michaelsawrycz@gmail.com";
-            string password = "Test123!";
+            string username = Environment.GetEnvironmentVariable("SELENIUM_USERNAME");
+            string password = Environment.GetEnvironmentVariable("SELENIUM_PASSWORD");
+
             var loginPage = new loginPage();
 
             loginPage.CompleteLogin(username, password);
